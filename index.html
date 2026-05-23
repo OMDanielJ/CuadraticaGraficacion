@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía: Graficación de la Función Cuadrática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5EFE3;
+  --cream-dark: #EAE0CE;
+  --navy: #1B2D4F;
+  --navy-mid: #2A4170;
+  --gold: #A86C10;
+  --gold-light: #EDBE5C;
+  --blue: #1557A4;
+  --blue-bg: #EBF2FF;
+  --purple: #623AB0;
+  --purple-bg: #F2ECFF;
+  --red: #B03030;
+  --red-bg: #FFECEC;
+  --green: #286A44;
+  --green-bg: #E6F7EF;
+  --border: #D5C8B0;
+  --text: #28200F;
+  --text-mid: #56483A;
+  --text-light: #8A7860;
+  --white: #FFFFFF;
+}
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  color: #fff;
+  padding: 3.5rem 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold-light) 0%, transparent 100%);
+}
+.header-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.9rem;
+  opacity: 0.85;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.header .subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  font-style: italic;
+}
+.header-formula {
+  margin-top: 1.5rem;
+  display: inline-block;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 0.55rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+
+/* ── CONTAINER ── */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+/* ── TABLE OF CONTENTS ── */
+.toc {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+}
+.toc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+.toc ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 0.2rem 1.5rem;
+}
+.toc ul li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-mid);
+  text-decoration: none;
+  font-size: 0.93rem;
+  padding: 0.18rem 0;
+  transition: color 0.15s;
+}
+.toc ul li a:hover { color: var(--navy); }
+.toc-n {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+  min-width: 1.4rem;
+}
+
+/* ── DIVIDER ── */
+.div {
+  height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+  margin: 2.5rem 0;
+}
+
+/* ── SECTION ── */
+.section { margin-bottom: 2.75rem; scroll-margin-top: 1rem; }
+.sec-hd {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+.sec-n {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  margin-top: 0.4rem;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.section p { margin-bottom: 0.75rem; color: var(--text-mid); }
+
+/* ── FORMULA BOX ── */
+.fbox {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1.1rem 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+.fbox .fm {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  letter-spacing: 0.03em;
+}
+.fbox .fl {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* ── INLINE CODE ── */
+.f {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: rgba(0,0,0,0.055);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  color: var(--navy);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1rem;
+}
+
+/* ── ACCENT BOXES ── */
+.abox {
+  border-left: 4px solid var(--gold);
+  background: #FFF8EC;
+  padding: 0.9rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1rem 0;
+  color: var(--text-mid);
+}
+.abox.blue { border-color: var(--blue); background: var(--blue-bg); }
+.abox.purple { border-color: var(--purple); background: var(--purple-bg); }
+.abox.red { border-color: var(--red); background: var(--red-bg); }
+.abox.green { border-color: var(--green); background: var(--green-bg); }
+.abox strong { color: var(--navy); }
+
+/* ── STEPS ── */
+.steps { display: flex; flex-direction: column; gap: 0.8rem; margin: 1rem 0; }
+.step { display: flex; gap: 0.9rem; align-items: flex-start; }
+.sn {
+  min-width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.sn.bl { background: var(--blue); }
+.sn.pu { background: var(--purple); }
+.sn.rd { background: var(--red); }
+.sc { flex: 1; color: var(--text-mid); }
+.sc strong { display: block; color: var(--navy); font-weight: 600; margin-bottom: 0.15rem; }
+.sc .result {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  background: var(--cream-dark);
+  padding: 0.3rem 0.75rem;
+  border-radius: 5px;
+  color: var(--navy);
+}
+.sc .result.hl {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+
+/* ── CANVAS ── */
+.cv-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1.25rem 0;
+}
+.cv-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+  font-style: italic;
+}
+.cv-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.cv-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+}
+.ldot {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+}
+.ldot span {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ── DISCRIMINANT TABLE ── */
+.dtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.dtable th {
+  background: var(--navy);
+  color: #fff;
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+}
+.dtable td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  color: var(--text-mid);
+}
+.dtable tr:last-child td { border-bottom: none; }
+.dtable tr:nth-child(even) td { background: #F9F5EE; }
+.badge {
+  display: inline-block;
+  padding: 0.12rem 0.6rem;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.badge.bl { background: var(--blue-bg); color: var(--blue); }
+.badge.pu { background: var(--purple-bg); color: var(--purple); }
+.badge.rd { background: var(--red-bg); color: var(--red); }
+
+/* ── SCALE PROCESS ── */
+.sp-grid { display: grid; gap: 0.85rem; margin: 1rem 0; }
+.sp-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.sp-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sp-text strong {
+  display: block;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+.sp-text p { color: var(--text-mid); font-size: 0.92rem; margin-bottom: 0.3rem; }
+.nums { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.35rem; }
+.num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.12rem 0.5rem;
+  background: var(--cream-dark);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+}
+.num.hl { background: var(--gold); border-color: var(--gold); color: #fff; font-weight: 500; }
+
+/* ── GUIDE POINTS TABLE ── */
+.gtable {
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  width: 100%;
+}
+.gtable th {
+  background: var(--navy);
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  text-align: center;
+}
+.gtable td {
+  padding: 0.42rem 1.25rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-mid);
+}
+.gtable tr:last-child td { border-bottom: none; }
+.gtable tr.vrow td { background: #FFF5E0; color: var(--gold); font-weight: 500; }
+.gtable tr:nth-child(even):not(.vrow) td { background: #F9F5EE; }
+
+/* ── INTERACTIVE ── */
+.interactive {
+  background: var(--white);
+  border: 2px solid var(--navy);
+  border-radius: 14px;
+  padding: 1.75rem;
+  margin: 2rem 0;
+}
+.interactive h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.interactive .desc {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-bottom: 1.1rem;
+  font-style: italic;
+}
+.irow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.1rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+.ig { display: flex; flex-direction: column; gap: 0.3rem; }
+.ig label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.ig input {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  width: 80px;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--cream);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.18s;
+}
+.ig input:focus { border-color: var(--navy); background: var(--white); }
+.ig-fn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--cream-dark);
+  color: var(--text-mid);
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+}
+.btn {
+  padding: 0.52rem 1.5rem;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn:hover { background: var(--navy-mid); }
+.result-panel {
+  display: none;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+.result-panel.show { display: block; }
+.result-panel .rline { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; }
+.result-panel .rhl { color: var(--navy); font-weight: 500; }
+
+/* ── EXERCISES ── */
+.exs { display: grid; gap: 0.8rem; margin: 1rem 0; }
+.ex {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+}
+.ex-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+.ex-fn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.ex-tasks { list-style: none; color: var(--text-mid); font-size: 0.9rem; }
+.ex-tasks li::before { content: '→ '; color: var(--gold); }
+details.ans { margin-top: 0.8rem; }
+details.ans summary {
+  cursor: pointer;
+  font-size: 0.84rem;
+  color: var(--blue);
+  font-style: italic;
+  user-select: none;
+}
+details.ans summary::-webkit-details-marker { color: var(--blue); }
+.ans-body {
+  background: var(--blue-bg);
+  border-radius: 7px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── TWO COL ── */
+.tc { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 600px) {
+  .tc { grid-template-columns: 1fr; }
+  .irow { flex-direction: column; }
+  .ig input { width: 100%; }
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+
+@media print {
+  .interactive { display: none; }
+  body { background: white; }
+  .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header class="header">
+  <div class="header-badge">Guía de Estudio · Segundo Semestre · Matemáticas</div>
+  <h1>La Función Cuadrática<br><em style="font-weight:400; font-size:0.75em; color:rgba(255,255,255,0.7);">Graficación por Raíces y Vértice</em></h1>
+  <div class="header-formula">f(x) = ax² + bx + c,&nbsp;&nbsp; a ≠ 0</div>
+</header>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════ TOC ═══════════════════════════════════ -->
+<nav class="toc" aria-label="Contenido">
+  <div class="toc-label">Contenido</div>
+  <ul>
+    <li><a href="#s1"><span class="toc-n">01</span> Elementos de la función cuadrática</a></li>
+    <li><a href="#s2"><span class="toc-n">02</span> El discriminante</a></li>
+    <li><a href="#s3"><span class="toc-n">03</span> Cómo elegir la escala</a></li>
+    <li><a href="#s4"><span class="toc-n">04</span> Caso I — Dos raíces reales</a></li>
+    <li><a href="#s5"><span class="toc-n">05</span> Caso II — Una raíz real (doble)</a></li>
+    <li><a href="#s6"><span class="toc-n">06</span> Caso III — Sin raíces reales</a></li>
+    <li><a href="#s7"><span class="toc-n">07</span> Herramienta interactiva</a></li>
+    <li><a href="#s8"><span class="toc-n">08</span> Ejercicios de práctica</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════ S1 ═══════════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="sec-hd">
+    <span class="sec-n">01</span>
+    <h2>Elementos de la función cuadrática</h2>
+  </div>
+
+  <p>Una <strong>función cuadrática</strong> es toda función de la forma <span class="f">f(x) = ax² + bx + c</span> donde <span class="f">a, b, c ∈ ℝ</span> y <span class="f">a ≠ 0</span>. Su gráfica es siempre una <strong>parábola</strong>.</p>
+
+  <div class="card">
+    <div class="tc">
+      <div>
+        <p style="font-weight:600; color:var(--navy); margin-bottom:0.5rem;">Apertura de la parábola</p>
+        <div class="abox green" style="margin-top:0.5rem;"><strong>a &gt; 0</strong> — abre hacia <strong>arriba</strong> (vértice es mínimo)</div>
+        <div class="abox red" style="margin-top:0.5rem;"><strong>a &lt; 0</strong> — abre hacia <strong>abajo</strong> (vértice es máximo)</div>
+        <p style="margin-top:0.6rem; font-size:0.9rem;">Entre mayor sea <span class="f">|a|</span>, más estrecha es la parábola.</p>
+      </div>
+      <div>
+        <p style="font-weight:600; color:var(--navy); margin-bottom:0.5rem;">Elementos clave</p>
+        <ul style="list-style:none; color:var(--text-mid); font-size:0.93rem; display:flex; flex-direction:column; gap:0.35rem;">
+          <li>🔴 <strong>Vértice V(x<sub>V</sub>, y<sub>V</sub>)</strong> — punto más alto o bajo</li>
+          <li>🔵 <strong>Raíces x<sub>1</sub>, x<sub>2</sub></strong> — donde f(x) = 0</li>
+          <li>🟢 <strong>Ordenada al origen</strong> — punto (0, c)</li>
+          <li>➡ <strong>Eje de simetría</strong> — recta x = x<sub>V</sub></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="fbox">
+    <div class="fm">x<sub>V</sub> = −b / (2a)</div>
+    <div class="fl">Coordenada x del vértice (también es el eje de simetría)</div>
+  </div>
+  <div class="fbox" style="margin-top:0.6rem;">
+    <div class="fm">y<sub>V</sub> = f(x<sub>V</sub>) = c − b² / (4a)</div>
+    <div class="fl">Coordenada y del vértice — se obtiene sustituyendo x<sub>V</sub> en la función</div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S2 ═══════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="sec-hd">
+    <span class="sec-n">02</span>
+    <h2>El discriminante — ¿cuántas raíces tiene?</h2>
+  </div>
+
+  <p>Antes de graficar, calcula el <strong>discriminante</strong> para saber cuántas raíces reales tiene la función y qué método usar.</p>
+
+  <div class="fbox">
+    <div class="fm">Δ = b² − 4ac</div>
+    <div class="fl">Discriminante de la función cuadrática</div>
+  </div>
+
+  <table class="dtable">
+    <thead>
+      <tr>
+        <th>Condición</th>
+        <th>Raíces</th>
+        <th>Descripción</th>
+        <th>Estrategia de graficación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge bl">Δ &gt; 0</span></td>
+        <td><strong>Dos raíces reales distintas</strong><br>x₁ ≠ x₂</td>
+        <td>La parábola corta al eje X en dos puntos.</td>
+        <td>Raíces + Vértice + Ordenada al origen</td>
+      </tr>
+      <tr>
+        <td><span class="badge pu">Δ = 0</span></td>
+        <td><strong>Una raíz real (doble)</strong><br>x₁ = x₂</td>
+        <td>La parábola es tangente al eje X. El vértice está sobre el eje.</td>
+        <td>Raíz doble + Puntos guía simétricos</td>
+      </tr>
+      <tr>
+        <td><span class="badge rd">Δ &lt; 0</span></td>
+        <td><strong>Sin raíces reales</strong></td>
+        <td>La parábola no toca el eje X. Solo raíces complejas.</td>
+        <td>Vértice + Puntos guía + Ordenada al origen</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="fbox">
+    <div class="fm">x = (−b ± √Δ) / (2a)</div>
+    <div class="fl">Fórmula general — solo aplica cuando Δ ≥ 0</div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S3 ═══════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="sec-hd">
+    <span class="sec-n">03</span>
+    <h2>Cómo elegir la escala de los ejes</h2>
+  </div>
+
+  <p>Una escala bien elegida garantiza que todos los puntos importantes sean visibles y que la parábola se vea proporcional. Sigue este proceso para cualquier función cuadrática.</p>
+
+  <div class="sp-grid">
+    <div class="sp-item">
+      <div class="sp-icon">1</div>
+      <div class="sp-text">
+        <strong>Identifica los puntos de interés en X</strong>
+        <p>Anota las coordenadas X de todos los puntos clave: las raíces (si existen), el vértice y el origen (x = 0). Estos marcan el rango mínimo que debe cubrir tu eje X.</p>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">2</div>
+      <div class="sp-text">
+        <strong>Agrega márgenes al rango de X</strong>
+        <p>Toma el punto más a la izquierda y el más a la derecha de interés. Agrega aproximadamente un 30–40% del rango total hacia cada lado para que la curva no quede cortada. Luego redondea a un número entero cómodo.</p>
+        <p><em>Ejemplo:</em> Si las raíces están en x = −4 y x = 2 (rango = 6), agrega ≈ 2 unidades → eje X de <span class="f">−6</span> a <span class="f">4</span>.</p>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">3</div>
+      <div class="sp-text">
+        <strong>Determina el rango de Y</strong>
+        <p>Evalúa la función en los extremos de X y en el vértice. El rango de Y va del valor mínimo al máximo de esos resultados, incluyendo siempre y = 0. Agrega un margen similar (≈ 15–20%).</p>
+        <p><em>Ejemplo:</em> Si el vértice está en y = −9 y el máximo visible es y = 0, el rango es [-9, 0]. Con margen → eje Y de <span class="f">−10</span> a <span class="f">2</span>.</p>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">4</div>
+      <div class="sp-text">
+        <strong>Elige un paso de escala "bonito"</strong>
+        <p>Divide el rango total entre 6–10 (el número de divisiones que quieres). Redondea ese resultado hacia arriba al número "bonito" más cercano. El objetivo es tener entre 6 y 10 marcas en cada eje.</p>
+        <p>Números bonitos de escala:</p>
+        <div class="nums">
+          <span class="num">0.1</span>
+          <span class="num">0.2</span>
+          <span class="num">0.25</span>
+          <span class="num">0.5</span>
+          <span class="num hl">1</span>
+          <span class="num hl">2</span>
+          <span class="num">5</span>
+          <span class="num">10</span>
+          <span class="num">25</span>
+          <span class="num">50</span>
+          <span class="num">100</span>
+        </div>
+        <p style="margin-top:0.4rem;">Los resaltados son los más comunes en funciones de segundo semestre.</p>
+      </div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">5</div>
+      <div class="sp-text">
+        <strong>Ajusta los límites al múltiplo del paso</strong>
+        <p>Redondea el límite inferior hacia abajo y el límite superior hacia arriba al múltiplo más cercano de tu paso elegido. Así las marcas caen en números enteros o fracciones limpias.</p>
+        <p><em>Ejemplo con paso = 1:</em><br>
+        Eje X: límites ajustados a <span class="f">−6</span> y <span class="f">4</span> → marcas: −6, −5, −4, …, 4 ✓<br>
+        Eje Y: límites ajustados a <span class="f">−10</span> y <span class="f">2</span> → marcas: −10, −9, …, 2 ✓</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="abox">
+    <strong>Regla de oro:</strong> El vértice y las raíces deben verse claramente en la gráfica, sin quedar pegados al borde ni tan pequeños que pierdan detalle. Si la parábola ocupa menos del 40% del espacio visible, reduce el rango; si los puntos quedan fuera del eje, amplíalo.
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S4 ═══════════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="sec-hd">
+    <span class="sec-n">04</span>
+    <h2>Caso I — Dos raíces reales distintas <span class="badge bl" style="font-size:0.75rem; vertical-align:middle;">Δ &gt; 0</span></h2>
+  </div>
+
+  <p>Ejemplo: <span class="f">f(x) = x² + 2x − 8</span> &nbsp;→&nbsp; a = 1, b = 2, c = −8</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn bl">1</div>
+      <div class="sc">
+        <strong>Calcula el discriminante</strong>
+        Δ = b² − 4ac = (2)² − 4(1)(−8) = 4 + 32 = 36
+        <div class="result">Δ = 36 &gt; 0 → Hay dos raíces reales distintas</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn bl">2</div>
+      <div class="sc">
+        <strong>Calcula las raíces con la fórmula general</strong>
+        x = (−2 ± √36) / (2·1) = (−2 ± 6) / 2
+        <div class="result">x₁ = (−2 − 6)/2 = <strong>−4</strong> &nbsp;&nbsp; x₂ = (−2 + 6)/2 = <strong>2</strong></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn bl">3</div>
+      <div class="sc">
+        <strong>Calcula el vértice</strong>
+        x<sub>V</sub> = −b/(2a) = −2/(2) = −1<br>
+        y<sub>V</sub> = f(−1) = (−1)² + 2(−1) − 8 = 1 − 2 − 8 = −9
+        <div class="result hl">V(−1, −9)</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn bl">4</div>
+      <div class="sc">
+        <strong>Calcula la ordenada al origen</strong>
+        f(0) = (0)² + 2(0) − 8 = −8
+        <div class="result">Punto (0, −8)</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn bl">5</div>
+      <div class="sc">
+        <strong>Determina la escala</strong>
+        <em>Eje X:</em> Raíces en x = −4 y x = 2 (rango = 6). Margen del 40% ≈ 2.4 → límites: de −7 a 4. Paso elegido: <strong>1</strong> (da 11 marcas cómodas).
+        <br>
+        <em>Eje Y:</em> Vértice en y = −9, máximo visible ≈ 0. Con margen superior → límites: de −10 a 3. Paso elegido: <strong>1</strong>.
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn bl">6</div>
+      <div class="sc">
+        <strong>Grafica</strong>
+        Marca x₁ = −4, x₂ = 2 sobre el eje X. Marca el vértice V(−1, −9). Traza la curva pasando por los tres puntos. Agrega el punto (0, −8) para mayor precisión. Dibuja el eje de simetría como línea punteada en x = −1.
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-wrap">
+    <div class="cv-title">Gráfica resultante — f(x) = x² + 2x − 8</div>
+    <canvas id="c1" height="380"></canvas>
+    <div class="cv-legend">
+      <div class="ldot"><span style="background:#1A5CA8"></span> Parábola f(x)</div>
+      <div class="ldot"><span style="background:#B8771E"></span> Vértice V(−1, −9)</div>
+      <div class="ldot"><span style="background:#1A5CA8"></span> Raíces x₁=−4, x₂=2</div>
+      <div class="ldot"><span style="background:#286A44"></span> Ordenada al origen (0, −8)</div>
+    </div>
+  </div>
+
+  <div class="abox blue">
+    <strong>Nota:</strong> Las raíces son simétricas respecto al eje de simetría. Puedes verificar: el promedio de x₁ y x₂ debe ser igual a x<sub>V</sub>. Aquí: (−4 + 2)/2 = −1 = x<sub>V</sub> ✓
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S5 ═══════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="sec-hd">
+    <span class="sec-n">05</span>
+    <h2>Caso II — Una raíz real doble <span class="badge pu" style="font-size:0.75rem; vertical-align:middle;">Δ = 0</span></h2>
+  </div>
+
+  <p>Ejemplo: <span class="f">f(x) = x² − 6x + 9</span> &nbsp;→&nbsp; a = 1, b = −6, c = 9</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn pu">1</div>
+      <div class="sc">
+        <strong>Calcula el discriminante</strong>
+        Δ = (−6)² − 4(1)(9) = 36 − 36 = 0
+        <div class="result">Δ = 0 → Una raíz real doble</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn pu">2</div>
+      <div class="sc">
+        <strong>Calcula la raíz doble</strong>
+        x₀ = −b/(2a) = 6/2 = 3
+        <div class="result">x₀ = 3 (raíz doble — el vértice toca el eje X)</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn pu">3</div>
+      <div class="sc">
+        <strong>Calcula el vértice</strong>
+        x<sub>V</sub> = 3 &nbsp; (igual que la raíz doble)<br>
+        y<sub>V</sub> = f(3) = 9 − 18 + 9 = 0
+        <div class="result hl">V(3, 0) — el vértice está sobre el eje X</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn pu">4</div>
+      <div class="sc">
+        <strong>Calcula puntos guía simétricos</strong>
+        Con el vértice en x = 3, evalúa a distancias ±1 y ±2:
+        <br>
+        f(2) = 4 − 12 + 9 = 1 &nbsp;→&nbsp; punto (2, 1)<br>
+        f(4) = 16 − 24 + 9 = 1 &nbsp;→&nbsp; punto (4, 1) [simétrico]<br>
+        f(1) = 1 − 6 + 9 = 4 &nbsp;→&nbsp; punto (1, 4)<br>
+        f(5) = 25 − 30 + 9 = 4 &nbsp;→&nbsp; punto (5, 4) [simétrico]
+        <div class="result">Ordenada al origen: f(0) = 9 → punto (0, 9)</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn pu">5</div>
+      <div class="sc">
+        <strong>Determina la escala</strong>
+        <em>Eje X:</em> Vértice en x = 3. Con puntos hasta x = 5 y el origen en x = 0 → rango 0 a 6. Con margen → de <strong>−1 a 7</strong>. Paso: <strong>1</strong>.
+        <br>
+        <em>Eje Y:</em> Puntos van de 0 (vértice) hasta 9 (ordenada). Con margen → de <strong>−1 a 11</strong>. Paso: <strong>1</strong>.
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-wrap">
+    <div class="cv-title">Gráfica resultante — f(x) = x² − 6x + 9</div>
+    <canvas id="c2" height="380"></canvas>
+    <div class="cv-legend">
+      <div class="ldot"><span style="background:#623AB0"></span> Parábola f(x)</div>
+      <div class="ldot"><span style="background:#B8771E"></span> Vértice / Raíz doble V(3, 0)</div>
+      <div class="ldot"><span style="background:#286A44"></span> Ordenada al origen (0, 9)</div>
+    </div>
+  </div>
+
+  <div class="abox purple">
+    <strong>Observación:</strong> Cuando Δ = 0, la parábola solo <em>toca</em> el eje X en un punto sin cruzarlo. El vértice coincide con la raíz. Esto equivale a que la función puede escribirse como <span class="f">f(x) = a(x − x₀)²</span>.
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S6 ═══════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="sec-hd">
+    <span class="sec-n">06</span>
+    <h2>Caso III — Sin raíces reales <span class="badge rd" style="font-size:0.75rem; vertical-align:middle;">Δ &lt; 0</span></h2>
+  </div>
+
+  <p>Ejemplo: <span class="f">f(x) = x² − 2x + 5</span> &nbsp;→&nbsp; a = 1, b = −2, c = 5</p>
+  <p>En este caso la parábola no cruza el eje X, por lo que el vértice y los puntos guía son la clave para definir la forma y posición de la curva.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn rd">1</div>
+      <div class="sc">
+        <strong>Calcula el discriminante</strong>
+        Δ = (−2)² − 4(1)(5) = 4 − 20 = −16
+        <div class="result">Δ = −16 &lt; 0 → Sin raíces reales. La parábola no toca el eje X.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn rd">2</div>
+      <div class="sc">
+        <strong>Calcula el vértice (punto de partida obligatorio)</strong>
+        x<sub>V</sub> = −(−2)/(2·1) = 1<br>
+        y<sub>V</sub> = f(1) = 1 − 2 + 5 = 4
+        <div class="result hl">V(1, 4) — mínimo de la función (ya que a &gt; 0)</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn rd">3</div>
+      <div class="sc">
+        <strong>Construye una tabla de puntos guía</strong>
+        Evalúa la función a distancias ±1, ±2 y ±3 del vértice. Aprovecha la simetría: los puntos a igual distancia del vértice comparten el mismo valor de y.
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn rd">4</div>
+      <div class="sc">
+        <strong>Ordenada al origen como punto adicional</strong>
+        f(0) = 0 − 0 + 5 = 5 → punto (0, 5)
+        <div class="result">Su simétrico respecto al eje x = 1 es el punto (2, 5)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="font-weight:600; color:var(--navy); margin-bottom:0.6rem;">Tabla de puntos guía — f(x) = x² − 2x + 5</p>
+    <table class="gtable">
+      <thead>
+        <tr><th>x</th><th>Cálculo</th><th>f(x)</th><th>Notas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>−2</td><td>4 + 4 + 5</td><td>13</td><td>simétrico con x = 4</td></tr>
+        <tr><td>−1</td><td>1 + 2 + 5</td><td>8</td><td>simétrico con x = 3</td></tr>
+        <tr><td>0</td><td>0 + 0 + 5</td><td>5</td><td>ordenada al origen</td></tr>
+        <tr class="vrow"><td>1</td><td>1 − 2 + 5</td><td>4</td><td>← VÉRTICE (mínimo)</td></tr>
+        <tr><td>2</td><td>4 − 4 + 5</td><td>5</td><td>simétrico con x = 0</td></tr>
+        <tr><td>3</td><td>9 − 6 + 5</td><td>8</td><td>simétrico con x = −1</td></tr>
+        <tr><td>4</td><td>16 − 8 + 5</td><td>13</td><td>simétrico con x = −2</td></tr>
+      </tbody>
+    </table>
+
+    <div class="abox red" style="margin-top:0.85rem;">
+      <strong>Elegir escala cuando no hay raíces:</strong><br>
+      <em>Eje X:</em> Tabla cubre de x = −2 a x = 4. Con margen → de <strong>−3 a 5</strong>. Paso: <strong>1</strong>.<br>
+      <em>Eje Y:</em> Valores de y van de 4 (vértice) a 13. Incluye y = 0 por convención. Con margen → de <strong>0 a 14</strong>. Paso: <strong>2</strong> (da 7 marcas limpias: 0, 2, 4, …, 14).
+    </div>
+  </div>
+
+  <div class="cv-wrap">
+    <div class="cv-title">Gráfica resultante — f(x) = x² − 2x + 5</div>
+    <canvas id="c3" height="380"></canvas>
+    <div class="cv-legend">
+      <div class="ldot"><span style="background:#B03030"></span> Parábola f(x)</div>
+      <div class="ldot"><span style="background:#B8771E"></span> Vértice V(1, 4)</div>
+      <div class="ldot"><span style="background:#286A44"></span> Ordenada al origen (0, 5)</div>
+      <div class="ldot"><span style="background:#623AB0"></span> Puntos guía simétricos</div>
+    </div>
+  </div>
+
+  <div class="abox red">
+    <strong>Estrategia para sin raíces:</strong> Traza al menos 5 puntos además del vértice (idealmente simétricos de a pares). El vértice te da la "punta" de la parábola y los puntos guía definen cuán abierta o cerrada es. Con 7 puntos bien distribuidos la curva queda claramente definida.
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S7 ═══════════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="sec-hd">
+    <span class="sec-n">07</span>
+    <h2>Herramienta interactiva</h2>
+  </div>
+  <p>Ingresa los coeficientes de tu función cuadrática y la herramienta calculará el discriminante, las raíces (si existen) y el vértice, y dibujará la gráfica con la escala adecuada.</p>
+
+  <div class="interactive">
+    <h3>Grafica tu función cuadrática</h3>
+    <p class="desc">f(x) = ax² + bx + c</p>
+    <div class="irow">
+      <div class="ig">
+        <label>a (≠ 0)</label>
+        <input type="number" id="ia" value="1" step="any">
+      </div>
+      <div class="ig">
+        <label>b</label>
+        <input type="number" id="ib" value="0" step="any">
+      </div>
+      <div class="ig">
+        <label>c</label>
+        <input type="number" id="ic" value="0" step="any">
+      </div>
+      <button class="btn" onclick="graficaInteractiva()">Graficar →</button>
+    </div>
+    <div id="result-info" class="result-panel"></div>
+    <div class="cv-wrap" style="margin:0; display:none;" id="icv-wrap">
+      <canvas id="ic1" height="380"></canvas>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ═══════════════════════════════════ S8 ═══════════════════════════════════ -->
+<section class="section" id="s8">
+  <div class="sec-hd">
+    <span class="sec-n">08</span>
+    <h2>Ejercicios de práctica</h2>
+  </div>
+  <p>Para cada función: calcula el discriminante, identifica el caso, determina la escala y realiza la gráfica. Las respuestas están disponibles para verificar tu trabajo.</p>
+
+  <div class="exs">
+    <div class="ex">
+      <div class="ex-num">Ejercicio 01 — Caso I</div>
+      <div class="ex-fn">f(x) = x² − x − 6</div>
+      <ul class="ex-tasks">
+        <li>Calcula Δ e identifica el caso</li>
+        <li>Encuentra las raíces x₁ y x₂</li>
+        <li>Calcula el vértice V(x<sub>V</sub>, y<sub>V</sub>)</li>
+        <li>Determina la escala adecuada para ambos ejes</li>
+        <li>Grafica la función</li>
+      </ul>
+      <details class="ans">
+        <summary>Ver respuesta</summary>
+        <div class="ans-body">
+          Δ = 1 + 24 = 25 &gt; 0 → Caso I (dos raíces)<br>
+          x₁ = (1−5)/2 = −2,  x₂ = (1+5)/2 = 3<br>
+          xᵥ = 1/2 = 0.5,  yᵥ = f(0.5) = 0.25 − 0.5 − 6 = −6.25<br>
+          V(0.5, −6.25)<br>
+          Escala X: de −4 a 5, paso 1<br>
+          Escala Y: de −8 a 4, paso 1 (o paso 2)
+        </div>
+      </details>
+    </div>
+
+    <div class="ex">
+      <div class="ex-num">Ejercicio 02 — Caso I (abre hacia abajo)</div>
+      <div class="ex-fn">f(x) = −x² + 4x − 3</div>
+      <ul class="ex-tasks">
+        <li>Calcula Δ e identifica el caso</li>
+        <li>Encuentra las raíces (la apertura es hacia abajo)</li>
+        <li>Calcula el vértice (¿es máximo o mínimo?)</li>
+        <li>Determina la escala y grafica</li>
+      </ul>
+      <details class="ans">
+        <summary>Ver respuesta</summary>
+        <div class="ans-body">
+          a = −1, b = 4, c = −3<br>
+          Δ = 16 − 12 = 4 &gt; 0 → Caso I<br>
+          x₁ = (−4−2)/(−2) = 1,  x₂ = (−4+2)/(−2) = 3<br>
+          xᵥ = −4/(−2) = 2,  yᵥ = f(2) = −4 + 8 − 3 = 1<br>
+          V(2, 1) — MÁXIMO (a &lt; 0, abre hacia abajo)<br>
+          Escala X: de −1 a 5, paso 1<br>
+          Escala Y: de −2 a 3, paso 1
+        </div>
+      </details>
+    </div>
+
+    <div class="ex">
+      <div class="ex-num">Ejercicio 03 — Caso II</div>
+      <div class="ex-fn">f(x) = x² + 4x + 4</div>
+      <ul class="ex-tasks">
+        <li>Verifica que Δ = 0</li>
+        <li>Encuentra la raíz doble y el vértice</li>
+        <li>Construye una tabla de puntos guía con 3 pares simétricos</li>
+        <li>Determina la escala y grafica</li>
+      </ul>
+      <details class="ans">
+        <summary>Ver respuesta</summary>
+        <div class="ans-body">
+          Δ = 16 − 16 = 0 → Caso II<br>
+          x₀ = −4/2 = −2 (raíz doble)<br>
+          V(−2, 0) — el vértice está sobre el eje X<br>
+          Puntos guía:<br>
+          f(−1) = 1−4+4 = 1  →  (−1, 1) y (−3, 1)<br>
+          f(0)  = 4        →  (0, 4)  y (−4, 4)<br>
+          f(1)  = 9        →  (1, 9)  y (−5, 9)<br>
+          Escala X: de −6 a 3, paso 1<br>
+          Escala Y: de −1 a 11, paso 1 (o paso 2)
+        </div>
+      </details>
+    </div>
+
+    <div class="ex">
+      <div class="ex-num">Ejercicio 04 — Caso III</div>
+      <div class="ex-fn">f(x) = 2x² − 4x + 6</div>
+      <ul class="ex-tasks">
+        <li>Verifica que Δ &lt; 0</li>
+        <li>Calcula el vértice</li>
+        <li>Construye tabla con al menos 3 pares de puntos guía</li>
+        <li>Determina la escala (nota: el eje Y no empieza en 0, ¿por qué?)</li>
+        <li>Grafica. ¿El vértice es máximo o mínimo?</li>
+      </ul>
+      <details class="ans">
+        <summary>Ver respuesta</summary>
+        <div class="ans-body">
+          a=2, b=−4, c=6<br>
+          Δ = 16 − 48 = −32 &lt; 0 → Caso III<br>
+          xᵥ = 4/4 = 1,  yᵥ = f(1) = 2 − 4 + 6 = 4<br>
+          V(1, 4) — MÍNIMO (a &gt; 0)<br>
+          Puntos guía:<br>
+          f(0) = 6  →  (0,6) y (2,6)<br>
+          f(−1) = 12 → (−1,12) y (3,12)<br>
+          f(−2) = 22 → (−2,22) y (4,22)<br>
+          Escala X: de −3 a 5, paso 1<br>
+          Escala Y: de 0 a 24, paso 2 (o paso 4)<br>
+          (El eje Y incluye 0 por convención, aunque la parábola no lo toque)
+        </div>
+      </details>
+    </div>
+
+    <div class="ex">
+      <div class="ex-num">Ejercicio 05 — Reto: escala no entera</div>
+      <div class="ex-fn">f(x) = 3x² − 12x + 9</div>
+      <ul class="ex-tasks">
+        <li>Calcula discriminante, raíces y vértice</li>
+        <li>Determina si el paso de escala sigue siendo 1 o conviene otro valor</li>
+        <li>Grafica e indica el eje de simetría</li>
+      </ul>
+      <details class="ans">
+        <summary>Ver respuesta</summary>
+        <div class="ans-body">
+          a=3, b=−12, c=9<br>
+          Δ = 144 − 108 = 36 &gt; 0 → Caso I<br>
+          x₁ = (12−6)/6 = 1,  x₂ = (12+6)/6 = 3<br>
+          xᵥ = 12/6 = 2,  yᵥ = f(2) = 12 − 24 + 9 = −3<br>
+          V(2, −3)<br>
+          Escala X: de −1 a 5, paso 1 (rango pequeño → paso 1 está bien)<br>
+          Escala Y: de −4 a 10, paso 1 o paso 2<br>
+          Eje de simetría: x = 2
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  Guía de estudio · Función Cuadrática · Segundo Semestre · Matemáticas<br>
+  Generada para uso académico libre — se puede imprimir y compartir
+</footer>
+
+<!-- ═══════════════════════════════════ SCRIPT ═══════════════════════════════════ -->
+<script>
+function drawParabola(canvasId, a, b, c, opts) {
+  opts = opts || {};
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+
+  var dpr = window.devicePixelRatio || 1;
+  var logW = canvas.parentElement.clientWidth - 38;
+  if (logW < 300) logW = 300;
+  var logH = opts.height || 360;
+
+  canvas.width  = logW * dpr;
+  canvas.height = logH * dpr;
+  canvas.style.width  = logW + 'px';
+  canvas.style.height = logH + 'px';
+
+  var ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  var W = logW, H = logH;
+  var PAD = { top:34, right:42, bottom:44, left:56 };
+  var PW = W - PAD.left - PAD.right;
+  var PH = H - PAD.top  - PAD.bottom;
+
+  var f = function(x){ return a*x*x + b*x + c; };
+
+  // discriminant and roots
+  var disc = b*b - 4*a*c;
+  var vx = -b/(2*a);
+  var vy = f(vx);
+  var roots = [];
+  if (Math.abs(disc) < 1e-9) {
+    roots = [vx];
+  } else if (disc > 0) {
+    var r1 = (-b - Math.sqrt(disc))/(2*a);
+    var r2 = (-b + Math.sqrt(disc))/(2*a);
+    roots = [Math.min(r1,r2), Math.max(r1,r2)];
+  }
+
+  // X range
+  var xMin, xMax;
+  if (roots.length === 2) {
+    var sp = roots[1]-roots[0];
+    xMin = roots[0] - sp*0.42;
+    xMax = roots[1] + sp*0.42;
+  } else {
+    xMin = vx - 4.5;
+    xMax = vx + 4.5;
+  }
+  xMin = Math.min(xMin, 0);
+  xMax = Math.max(xMax, 0);
+
+  // Y range
+  var yMin =  1e9, yMax = -1e9;
+  for (var i=0; i<=300; i++) {
+    var xi = xMin + (xMax-xMin)*i/300;
+    var yi = f(xi);
+    if (yi < yMin) yMin = yi;
+    if (yi > yMax) yMax = yi;
+  }
+  yMin = Math.min(yMin, 0);
+  yMax = Math.max(yMax, 0);
+
+  // padding
+  var ysp = yMax - yMin || 1;
+  yMin -= ysp*0.16;
+  yMax += ysp*0.16;
+
+  // nice step
+  function niceStep(range, divs) {
+    var rough = Math.abs(range)/divs;
+    if (rough === 0) rough = 1;
+    var mag = Math.pow(10, Math.floor(Math.log10(rough)));
+    var r = rough/mag;
+    var step;
+    if (r <= 1) step = mag;
+    else if (r <= 2) step = 2*mag;
+    else if (r <= 5) step = 5*mag;
+    else step = 10*mag;
+    return step;
+  }
+
+  var xStep = niceStep(xMax-xMin, 8);
+  var yStep = niceStep(yMax-yMin, 7);
+
+  // snap to grid
+  xMin = Math.floor(xMin/xStep)*xStep;
+  xMax = Math.ceil(xMax/xStep)*xStep;
+  yMin = Math.floor(yMin/yStep)*yStep;
+  yMax = Math.ceil(yMax/yStep)*yStep;
+  if (xMin === xMax) { xMin -= xStep; xMax += xStep; }
+  if (yMin === yMax) { yMin -= yStep; yMax += yStep; }
+
+  // transforms
+  var tx = function(x){ return PAD.left + (x-xMin)/(xMax-xMin)*PW; };
+  var ty = function(y){ return PAD.top  + (1-(y-yMin)/(yMax-yMin))*PH; };
+
+  // BG
+  ctx.fillStyle = '#FAFAF8';
+  ctx.fillRect(0,0,W,H);
+
+  // Grid
+  ctx.strokeStyle = '#DDD6C8';
+  ctx.lineWidth = 0.8;
+  var x0g = Math.ceil(xMin/xStep)*xStep;
+  for (var gx=x0g; gx<=xMax+xStep/2; gx+=xStep) {
+    ctx.beginPath(); ctx.moveTo(tx(gx),PAD.top); ctx.lineTo(tx(gx),PAD.top+PH); ctx.stroke();
+  }
+  var y0g = Math.ceil(yMin/yStep)*yStep;
+  for (var gy=y0g; gy<=yMax+yStep/2; gy+=yStep) {
+    ctx.beginPath(); ctx.moveTo(PAD.left,ty(gy)); ctx.lineTo(PAD.left+PW,ty(gy)); ctx.stroke();
+  }
+
+  // Axis tick labels
+  ctx.fillStyle = '#665840';
+  ctx.font = '11px "JetBrains Mono", monospace';
+  function fmt(v) {
+    var s = parseFloat(v.toFixed(6)).toString();
+    return s;
+  }
+  for (var lx=x0g; lx<=xMax+xStep/2; lx+=xStep) {
+    ctx.textAlign = 'center';
+    ctx.fillText(fmt(lx), tx(lx), PAD.top+PH+17);
+  }
+  for (var ly=y0g; ly<=yMax+yStep/2; ly+=yStep) {
+    ctx.textAlign = 'right';
+    ctx.fillText(fmt(ly), PAD.left-7, ty(ly)+4);
+  }
+
+  // Axes
+  var ox = tx(0), oy = ty(0);
+  ctx.strokeStyle = '#1B2D4F';
+  ctx.lineWidth = 1.8;
+
+  function arrowH(x1,y1,x2,y2) {
+    var ang = Math.atan2(y2-y1, x2-x1);
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x2,y2);
+    ctx.lineTo(x2-9*Math.cos(ang-0.4), y2-9*Math.sin(ang-0.4));
+    ctx.lineTo(x2-9*Math.cos(ang+0.4), y2-9*Math.sin(ang+0.4));
+    ctx.closePath();
+    ctx.fillStyle='#1B2D4F'; ctx.fill();
+  }
+
+  // X axis
+  if (oy >= PAD.top && oy <= PAD.top+PH) {
+    arrowH(PAD.left, oy, PAD.left+PW+14, oy);
+    ctx.fillStyle='#1B2D4F';
+    ctx.font='bold 13px Georgia, serif';
+    ctx.textAlign='left';
+    ctx.fillText('x', PAD.left+PW+19, oy+5);
+  }
+  // Y axis
+  if (ox >= PAD.left && ox <= PAD.left+PW) {
+    arrowH(PAD.left+PH+PAD.top, PAD.top+PH, ox, PAD.top-14);
+    // override: just draw straight arrow
+    ctx.beginPath(); ctx.moveTo(ox, PAD.top+PH); ctx.lineTo(ox, PAD.top-14); ctx.stroke();
+    // arrowhead top
+    ctx.beginPath();
+    ctx.moveTo(ox, PAD.top-14);
+    ctx.lineTo(ox-5, PAD.top-5);
+    ctx.lineTo(ox+5, PAD.top-5);
+    ctx.closePath();
+    ctx.fillStyle='#1B2D4F'; ctx.fill();
+    ctx.fillStyle='#1B2D4F';
+    ctx.font='bold 13px Georgia, serif';
+    ctx.textAlign='center';
+    ctx.fillText('y', ox, PAD.top-19);
+  }
+
+  // Axis of symmetry (dashed)
+  ctx.strokeStyle = 'rgba(168,108,16,0.3)';
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(tx(vx), PAD.top+4); ctx.lineTo(tx(vx), PAD.top+PH-4); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Parabola
+  var col = opts.color || '#1A5CA8';
+  ctx.strokeStyle = col;
+  ctx.lineWidth = 2.6;
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  var first = true;
+  for (var pi=0; pi<=400; pi++) {
+    var px = xMin + (xMax-xMin)*pi/400;
+    var py = f(px);
+    var pcx = tx(px), pcy = ty(py);
+    if (pcy < PAD.top-10 || pcy > PAD.top+PH+10) { first=true; continue; }
+    if (first) { ctx.moveTo(pcx,pcy); first=false; }
+    else ctx.lineTo(pcx,pcy);
+  }
+  ctx.stroke();
+
+  // Points
+  function pt(x, y, lbl, dotCol, ox, oy, align) {
+    var cx=tx(x), cy=ty(y);
+    if (cx < PAD.left-8 || cx > PAD.left+PW+8) return;
+    if (cy < PAD.top-8  || cy > PAD.top+PH+8)  return;
+    // halo
+    ctx.beginPath(); ctx.arc(cx,cy,8,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.fill();
+    // dot
+    ctx.beginPath(); ctx.arc(cx,cy,5,0,Math.PI*2);
+    ctx.fillStyle=dotCol; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.9)'; ctx.lineWidth=1.5; ctx.stroke();
+    // label
+    ctx.fillStyle=dotCol;
+    ctx.font='bold 11px "Source Serif 4", serif';
+    ctx.textAlign=align||'center';
+    ctx.fillText(lbl, cx+(ox||0), cy+(oy||0));
+  }
+
+  // y-intercept
+  var yi = f(0);
+  pt(0, yi, '(0, '+fmt(yi)+')', '#286A44', 10, -2, 'left');
+
+  // roots
+  if (roots.length === 1) {
+    pt(roots[0], 0, 'x\u2080='+fmt(roots[0]), '#B8771E', 0, -15, 'center');
+  } else {
+    roots.forEach(function(r, i) {
+      var lbl = (i===0?'x\u2081':'x\u2082')+'='+fmt(r);
+      pt(r, 0, lbl, '#1A5CA8', 0, -15, 'center');
+    });
+  }
+
+  // guide points for no-roots case
+  if (opts.guidePoints) {
+    opts.guidePoints.forEach(function(gp) {
+      pt(gp[0], gp[1], '('+fmt(gp[0])+', '+fmt(gp[1])+')', '#623AB0', 12, -2, 'left');
+    });
+  }
+
+  // vertex
+  var vLbl = 'V('+fmt(vx)+', '+fmt(vy)+')';
+  var voy = (a>0) ? -15 : 15;
+  pt(vx, vy, vLbl, '#B8771E', 18, voy, 'left');
+}
+
+// ── Draw the three example canvases ──
+window.addEventListener('load', function() {
+  drawParabola('c1',  1,  2, -8, {color:'#1A5CA8', height:380});
+  drawParabola('c2',  1, -6,  9, {color:'#623AB0', height:380});
+  drawParabola('c3',  1, -2,  5, {
+    color:'#B03030', height:380,
+    guidePoints:[[-2,13],[-1,8],[3,8],[4,13]]
+  });
+});
+
+window.addEventListener('resize', function() {
+  drawParabola('c1',  1,  2, -8, {color:'#1A5CA8', height:380});
+  drawParabola('c2',  1, -6,  9, {color:'#623AB0', height:380});
+  drawParabola('c3',  1, -2,  5, {
+    color:'#B03030', height:380,
+    guidePoints:[[-2,13],[-1,8],[3,8],[4,13]]
+  });
+  var ia=parseFloat(document.getElementById('ia').value);
+  var ib=parseFloat(document.getElementById('ib').value);
+  var ic=parseFloat(document.getElementById('ic').value);
+  if (!isNaN(ia) && ia!==0 && document.getElementById('icv-wrap').style.display!=='none') {
+    drawParabola('ic1', ia, ib, ic, {color:'#1B2D4F', height:380});
+  }
+});
+
+// ── Interactive tool ──
+function graficaInteractiva() {
+  var a = parseFloat(document.getElementById('ia').value);
+  var b = parseFloat(document.getElementById('ib').value);
+  var c = parseFloat(document.getElementById('ic').value);
+
+  if (isNaN(a) || a === 0) {
+    alert('El coeficiente a no puede ser cero ni vacío.');
+    return;
+  }
+  if (isNaN(b)) b = 0;
+  if (isNaN(c)) c = 0;
+
+  var disc = b*b - 4*a*c;
+  var vx = -b/(2*a);
+  var vy = a*vx*vx + b*vx + c;
+
+  function fmt2(v){ return parseFloat(v.toFixed(4)).toString(); }
+
+  var html = '';
+
+  // Function string
+  var bStr = b >= 0 ? ' + '+b+'x' : ' − '+Math.abs(b)+'x';
+  var cStr = c >= 0 ? ' + '+c : ' − '+Math.abs(c);
+  if (b===0) bStr='';
+  if (c===0) cStr='';
+  html += '<div class="rline"><strong style="color:var(--navy)">f(x) = '+a+'x²'+bStr+cStr+'</strong></div><br>';
+  html += '<div class="rline">Δ = b² − 4ac = '+b+'² − 4·'+a+'·'+c+' = '+fmt2(disc)+'</div>';
+
+  if (Math.abs(disc) < 1e-9) {
+    html += '<div class="rline">Δ ≈ 0 → <span class="rhl">Caso II: una raíz real doble</span></div>';
+    html += '<div class="rline">x₀ = '+fmt2(vx)+'</div>';
+  } else if (disc > 0) {
+    html += '<div class="rline">Δ > 0 → <span class="rhl">Caso I: dos raíces reales distintas</span></div>';
+    var r1 = (-b - Math.sqrt(disc))/(2*a);
+    var r2 = (-b + Math.sqrt(disc))/(2*a);
+    html += '<div class="rline">x₁ = '+fmt2(Math.min(r1,r2))+'&nbsp;&nbsp; x₂ = '+fmt2(Math.max(r1,r2))+'</div>';
+  } else {
+    html += '<div class="rline">Δ < 0 → <span class="rhl">Caso III: sin raíces reales</span></div>';
+    var re = fmt2(-b/(2*a));
+    var im = fmt2(Math.sqrt(-disc)/(2*a));
+    html += '<div class="rline">Raíces complejas: x = '+re+' ± '+im+'i</div>';
+  }
+
+  html += '<div class="rline">Vértice: V('+fmt2(vx)+', '+fmt2(vy)+')</div>';
+  html += '<div class="rline">Apertura: '+(a>0?'hacia arriba ↑ (mínimo)':'hacia abajo ↓ (máximo)')+'</div>';
+  html += '<div class="rline">Ordenada al origen: (0, '+fmt2(c)+')</div>';
+
+  var panel = document.getElementById('result-info');
+  panel.innerHTML = html;
+  panel.classList.add('show');
+
+  var wrap = document.getElementById('icv-wrap');
+  wrap.style.display = 'block';
+  setTimeout(function(){ drawParabola('ic1', a, b, c, {color:'#1B2D4F', height:380}); }, 50);
+}
+</script>
+</body>
+</html>
