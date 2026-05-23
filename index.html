@@ -1328,8 +1328,6 @@ function drawParabola(canvasId, a, b, c, opts) {
   }
   // Y axis
   if (ox >= PAD.left && ox <= PAD.left+PW) {
-    arrowH(PAD.left+PH+PAD.top, PAD.top+PH, ox, PAD.top-14);
-    // override: just draw straight arrow
     ctx.beginPath(); ctx.moveTo(ox, PAD.top+PH); ctx.lineTo(ox, PAD.top-14); ctx.stroke();
     // arrowhead top
     ctx.beginPath();
